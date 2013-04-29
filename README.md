@@ -16,11 +16,14 @@ Tags: processing, pure data, kinect, simpleopenni, osc, center of mass, lumaoffs
 
 
 Date: Wed 04/26/2013
+
 Time: 12:02:29
+
 Time Zone: (EST -05:00)
 
 
 Confirmed Hardware: Early 2011 15" inch MacBook Pro, 2.2 Ghz quad i7
+
 Confirmed OS: Mint 14 (nadia) Kernel Linux 3.5.0-17-generic 
 
 ****************************************************************************
