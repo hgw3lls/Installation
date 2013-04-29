@@ -1,0 +1,895 @@
+#N canvas 3 73 1665 974 12;
+#X declare -lib mrpeach;
+#X declare -lib Gem;
+#N canvas 246 134 1431 903 Receive_OSC 0;
+#X obj 760 627 maximum;
+#X floatatom 760 660 5 0 0 0 - - -;
+#X floatatom 1160 387 5 0 0 0 - - -;
+#X obj 760 581 pack f f f f f f;
+#X obj 843 628 minimum;
+#X obj 1160 351 value eq;
+#X floatatom 843 661 5 0 0 0 - - -;
+#X obj 1189 272 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1
+0 1;
+#X obj 1160 315 metro 1;
+#N canvas 685 306 768 477 switch 0;
+#X floatatom -816 199 0 0 0 0 - - -;
+#X obj -815 176 + 1;
+#X msg -816 55 bang;
+#X obj -818 156 float;
+#X obj -816 91 trigger bang bang;
+#X msg -699 137 0;
+#X text -555 175 first set value to zero;
+#X text -555 142 initialization is in two steps;
+#X text -559 197 (before starting the metronome);
+#X text -1020 182 conditionally;
+#X text -1004 200 stop the;
+#X text -1005 217 metronome;
+#X obj -906 86 select 2;
+#X msg -906 122 0;
+#X msg -859 55 stop;
+#X obj -816 235 outlet;
+#X obj -820 0 inlet;
+#X obj -861 28 select 0;
+#X obj -817 127 metro 100;
+#X connect 0 0 15 0;
+#X connect 1 0 0 0;
+#X connect 1 0 3 1;
+#X connect 1 0 12 0;
+#X connect 2 0 4 0;
+#X connect 3 0 1 0;
+#X connect 4 0 18 0;
+#X connect 4 1 5 0;
+#X connect 5 0 3 1;
+#X connect 12 0 13 0;
+#X connect 13 0 3 1;
+#X connect 14 0 18 0;
+#X connect 16 0 17 0;
+#X connect 17 0 14 0;
+#X connect 17 1 2 0;
+#X connect 18 0 3 0;
+#X restore 760 452 pd switch;
+#N canvas 832 419 568 408 data_refresher 0;
+#X obj 32 85 select 1;
+#X floatatom 76 150 5 0 0 0 - - -;
+#X obj 32 125 bang;
+#X obj 156 111 bang;
+#X obj 156 74 select 2;
+#X floatatom 32 184 0 0 0 0 - - -;
+#X floatatom -11 286 0 0 0 0 - - -;
+#X floatatom 90 184 0 0 0 0 - - -;
+#X floatatom 133 288 0 0 0 0 - - -;
+#X obj 32 16 inlet;
+#X obj 106 99 inlet;
+#X obj 68 352 outlet;
+#X floatatom 32 47 5 0 0 0 - - -;
+#X text 172 163 The second inlet is the value we are alternating. In
+this it is the value of the first players Z-position.;
+#X text 222 96 The first inlet is the switch \, input values are 1
+and 2;
+#X text 135 1 This patch rapidly adds and subtracts a value of 0.5
+from the Z-position value in ensuring the maximum outlet is always
+the current value;
+#X text 210 319 comment;
+#X obj 32 230 + 0.25;
+#X obj 90 230 - 0.25;
+#X connect 0 0 2 0;
+#X connect 1 0 7 0;
+#X connect 1 0 5 0;
+#X connect 2 0 5 0;
+#X connect 2 0 1 0;
+#X connect 2 0 6 0;
+#X connect 3 0 7 0;
+#X connect 3 0 1 0;
+#X connect 3 0 8 0;
+#X connect 4 0 3 0;
+#X connect 5 0 17 0;
+#X connect 6 0 11 0;
+#X connect 7 0 18 0;
+#X connect 8 0 11 0;
+#X connect 9 0 12 0;
+#X connect 10 0 1 0;
+#X connect 12 0 0 0;
+#X connect 12 0 4 0;
+#X connect 17 0 6 0;
+#X connect 18 0 8 0;
+#X restore 760 489 pd data_refresher;
+#X floatatom 760 527 5 0 0 0 - - -;
+#X obj 431 338 knob 50 50 0 3000 0 0 empty empty empty 0 -8 0 8 -262144
+-1 -1 0 1;
+#X obj 373 337 knob 50 50 0 2000 0 0 empty empty empty 0 -8 0 8 -262144
+-1 -1 0 1;
+#X obj 315 337 knob 50 50 0 1000 0 0 empty empty empty 0 -8 0 8 -262144
+-1 -1 0 1;
+#X obj 605 339 knob 50 50 0 3000 0 0 empty empty empty 0 -8 0 8 -262144
+-1 -1 0 1;
+#X obj 547 338 knob 50 50 0 2000 0 0 empty empty empty 0 -8 0 8 -262144
+-1 -1 0 1;
+#X obj 489 338 knob 50 50 0 2000 0 0 empty empty empty 0 -8 0 8 -262144
+-1 -1 0 1;
+#X obj 777 339 knob 50 50 0 3000 0 0 empty empty empty 0 -8 0 8 -262144
+-1 -1 0 1;
+#X obj 719 338 knob 50 50 0 2000 0 0 empty empty empty 0 -8 0 8 -262144
+-1 -1 0 1;
+#X obj 661 338 knob 50 50 0 2000 0 0 empty empty empty 0 -8 0 8 -262144
+-1 -1 0 1;
+#X obj 954 339 knob 50 50 0 3000 0 0 empty empty empty 0 -8 0 8 -262144
+-1 -1 0 1;
+#X obj 896 338 knob 50 50 0 2000 0 0 empty empty empty 0 -8 0 8 -262144
+-1 -1 0 1;
+#X obj 838 338 knob 50 50 0 2000 0 0 empty empty empty 0 -8 0 8 -262144
+-1 -1 0 1;
+#X obj 254 338 knob 50 50 0 3000 0 0 empty empty empty 0 -8 0 8 -262144
+-1 -1 0 1;
+#X obj 196 337 knob 50 50 0 2000 0 0 empty empty empty 0 -8 0 8 -262144
+-1 -1 0 1;
+#X obj 138 337 knob 50 50 0 2000 0 0 empty empty empty 0 -8 0 8 -262144
+-1 -1 0 1;
+#X obj -18 129 unpack f f f;
+#X floatatom -18 156 5 0 2000 0 - - -;
+#X obj 80 338 knob 50 50 0 3000 0 0 empty empty empty 0 -8 0 8 -262144
+-1 -1 0 1;
+#X obj 22 337 knob 50 50 0 2000 0 0 empty empty empty 0 -8 0 8 -262144
+-1 -1 0 1;
+#X obj -36 337 knob 50 50 0 2000 0 0 empty empty empty 0 -8 0 8 -262144
+-1 -1 0 1;
+#X floatatom 876 454 5 0 0 0 - - -;
+#X obj 50 632 maximum;
+#X floatatom 50 665 5 0 0 0 - - -;
+#X obj 50 586 pack f f f f f f;
+#X obj 133 633 minimum;
+#X floatatom 133 666 5 0 0 0 - - -;
+#N canvas 685 305 768 477 switch 0;
+#X floatatom -816 199 0 0 0 0 - - -;
+#X obj -815 176 + 1;
+#X msg -816 55 bang;
+#X obj -818 156 float;
+#X obj -816 91 trigger bang bang;
+#X msg -699 137 0;
+#X text -555 175 first set value to zero;
+#X text -555 142 initialization is in two steps;
+#X text -559 197 (before starting the metronome);
+#X text -1020 182 conditionally;
+#X text -1004 200 stop the;
+#X text -1005 217 metronome;
+#X obj -906 86 select 2;
+#X msg -906 122 0;
+#X msg -859 55 stop;
+#X obj -816 235 outlet;
+#X obj -820 0 inlet;
+#X obj -861 28 select 0;
+#X obj -817 127 metro 50;
+#X connect 0 0 15 0;
+#X connect 1 0 0 0;
+#X connect 1 0 3 1;
+#X connect 1 0 12 0;
+#X connect 2 0 4 0;
+#X connect 3 0 1 0;
+#X connect 4 0 18 0;
+#X connect 4 1 5 0;
+#X connect 5 0 3 1;
+#X connect 12 0 13 0;
+#X connect 13 0 3 1;
+#X connect 14 0 18 0;
+#X connect 16 0 17 0;
+#X connect 17 0 14 0;
+#X connect 17 1 2 0;
+#X connect 18 0 3 0;
+#X restore 50 457 pd switch;
+#N canvas 1032 556 568 408 data_refresher 0;
+#X obj 32 85 select 1;
+#X floatatom 76 150 5 0 0 0 - - -;
+#X obj 32 125 bang;
+#X obj 156 111 bang;
+#X obj 156 74 select 2;
+#X floatatom 32 184 0 0 0 0 - - -;
+#X floatatom -11 286 0 0 0 0 - - -;
+#X floatatom 90 184 0 0 0 0 - - -;
+#X floatatom 133 288 0 0 0 0 - - -;
+#X obj 32 16 inlet;
+#X obj 106 99 inlet;
+#X obj 68 352 outlet;
+#X floatatom 32 47 5 0 0 0 - - -;
+#X text 172 163 The second inlet is the value we are alternating. In
+this it is the value of the first players Z-position.;
+#X text 222 96 The first inlet is the switch \, input values are 1
+and 2;
+#X text 135 1 This patch rapidly adds and subtracts a value of 0.5
+from the Z-position value in ensuring the maximum outlet is always
+the current value;
+#X text 210 319 comment;
+#X obj 32 230 + 0.25;
+#X obj 90 230 - 0.25;
+#X connect 0 0 2 0;
+#X connect 1 0 7 0;
+#X connect 1 0 5 0;
+#X connect 2 0 5 0;
+#X connect 2 0 1 0;
+#X connect 2 0 6 0;
+#X connect 3 0 7 0;
+#X connect 3 0 1 0;
+#X connect 3 0 8 0;
+#X connect 4 0 3 0;
+#X connect 5 0 17 0;
+#X connect 6 0 11 0;
+#X connect 7 0 18 0;
+#X connect 8 0 11 0;
+#X connect 9 0 12 0;
+#X connect 10 0 1 0;
+#X connect 12 0 0 0;
+#X connect 12 0 4 0;
+#X connect 17 0 6 0;
+#X connect 18 0 8 0;
+#X restore 50 494 pd data_refresher;
+#X floatatom 50 532 5 0 0 0 - - -;
+#X floatatom 166 459 5 0 0 0 - - -;
+#X obj 374 626 maximum;
+#X floatatom 374 659 5 0 0 0 - - -;
+#X obj 374 580 pack f f f f f f;
+#X obj 457 627 minimum;
+#X floatatom 457 660 5 0 0 0 - - -;
+#N canvas 685 305 768 477 switch 0;
+#X floatatom -816 199 0 0 0 0 - - -;
+#X obj -815 176 + 1;
+#X msg -816 55 bang;
+#X obj -818 156 float;
+#X obj -816 91 trigger bang bang;
+#X msg -699 137 0;
+#X text -555 175 first set value to zero;
+#X text -555 142 initialization is in two steps;
+#X text -559 197 (before starting the metronome);
+#X text -1020 182 conditionally;
+#X text -1004 200 stop the;
+#X text -1005 217 metronome;
+#X obj -906 86 select 2;
+#X msg -906 122 0;
+#X msg -859 55 stop;
+#X obj -816 235 outlet;
+#X obj -820 0 inlet;
+#X obj -861 28 select 0;
+#X obj -817 127 metro 100;
+#X text -733 229 alternate a 1 and 2;
+#X connect 0 0 15 0;
+#X connect 1 0 0 0;
+#X connect 1 0 3 1;
+#X connect 1 0 12 0;
+#X connect 2 0 4 0;
+#X connect 3 0 1 0;
+#X connect 4 0 18 0;
+#X connect 4 1 5 0;
+#X connect 5 0 3 1;
+#X connect 12 0 13 0;
+#X connect 13 0 3 1;
+#X connect 14 0 18 0;
+#X connect 16 0 17 0;
+#X connect 17 0 14 0;
+#X connect 17 1 2 0;
+#X connect 18 0 3 0;
+#X restore 374 451 pd switch;
+#N canvas 1032 557 568 408 data_refresher 0;
+#X obj 32 85 select 1;
+#X floatatom 76 150 5 0 0 0 - - -;
+#X obj 32 125 bang;
+#X obj 156 111 bang;
+#X obj 156 74 select 2;
+#X floatatom 32 184 0 0 0 0 - - -;
+#X floatatom -11 286 0 0 0 0 - - -;
+#X floatatom 90 184 0 0 0 0 - - -;
+#X floatatom 133 288 0 0 0 0 - - -;
+#X obj 32 16 inlet;
+#X obj 106 99 inlet;
+#X obj 68 352 outlet;
+#X floatatom 32 47 5 0 0 0 - - -;
+#X text 172 163 The second inlet is the value we are alternating. In
+this it is the value of the first players Z-position.;
+#X text 222 96 The first inlet is the switch \, input values are 1
+and 2;
+#X text 135 1 This patch rapidly adds and subtracts a value of 0.5
+from the Z-position value in ensuring the maximum outlet is always
+the current value;
+#X text 210 319 comment;
+#X obj 32 230 + 0.25;
+#X obj 90 230 - 0.25;
+#X connect 0 0 2 0;
+#X connect 1 0 7 0;
+#X connect 1 0 5 0;
+#X connect 2 0 5 0;
+#X connect 2 0 1 0;
+#X connect 2 0 6 0;
+#X connect 3 0 7 0;
+#X connect 3 0 1 0;
+#X connect 3 0 8 0;
+#X connect 4 0 3 0;
+#X connect 5 0 17 0;
+#X connect 6 0 11 0;
+#X connect 7 0 18 0;
+#X connect 8 0 11 0;
+#X connect 9 0 12 0;
+#X connect 10 0 1 0;
+#X connect 12 0 0 0;
+#X connect 12 0 4 0;
+#X connect 17 0 6 0;
+#X connect 18 0 8 0;
+#X restore 374 488 pd data_refresher;
+#X floatatom 374 526 5 0 0 0 - - -;
+#X floatatom 490 453 5 0 0 0 - - -;
+#X obj 187 712 pack f f f;
+#X obj 505 716 pack f f f;
+#X obj 182 748 outlet;
+#X obj 493 752 outlet;
+#N canvas 393 148 719 500 recieve_OSC 0;
+#X text 323 44 <-- import mrpeach objects;
+#X obj 220 149 unpackOSC;
+#X text 323 115 <-- listen to port 9001;
+#X text 292 151 <-- unpack the OSC message;
+#X obj 218 44 import mrpeach;
+#X text 218 13 receiving OSC messages;
+#X obj 220 116 udpreceive 5001;
+#X floatatom -13 276 5 0 0 0 - - -;
+#X obj -13 243 routeOSC /CoM/numUsers;
+#X obj 220 182 routeOSC /CoM/1 /CoM/2 /CoM/3 /CoM/4 /CoM/5 /CoM/6;
+#X obj 220 223 outlet;
+#X obj 277 223 outlet;
+#X obj 335 223 outlet;
+#X obj 393 223 outlet;
+#X obj 451 223 outlet;
+#X obj 509 223 outlet;
+#X obj -18 326 outlet;
+#X text 180 269 This is the code to recieve the OSC message from processing
+\, we are recieving the center of mass for 6 users \, and outputting
+them. Each User CoM is outputting 3 numbers \, an X \, Y \, and Z coordinate.
+The outlet is recieving a packet of 3 digits;
+#X connect 1 0 8 0;
+#X connect 1 0 9 0;
+#X connect 6 0 1 0;
+#X connect 7 0 16 0;
+#X connect 8 0 7 0;
+#X connect 9 0 10 0;
+#X connect 9 1 11 0;
+#X connect 9 2 12 0;
+#X connect 9 3 13 0;
+#X connect 9 4 14 0;
+#X connect 9 5 15 0;
+#X restore 409 73 pd recieve_OSC;
+#X floatatom 1108 219 5 0 0 2 User_Num - -;
+#X text 614 728 outputs packets of the maximum/minimum X \, Y \, and
+Z values respectively for all the users;
+#X obj 1190 222 inlet;
+#X obj -18 181 abs;
+#X floatatom -18 206 5 0 2000 0 - - -;
+#X floatatom 22 156 5 0 2000 0 - - -;
+#X obj 22 181 abs;
+#X floatatom 22 206 5 0 2000 0 - - -;
+#X floatatom 63 156 5 0 2000 0 - - -;
+#X obj 63 181 abs;
+#X floatatom 63 206 5 0 2000 0 - - -;
+#X obj 115 130 unpack f f f;
+#X floatatom 115 157 5 0 2000 0 - - -;
+#X obj 115 182 abs;
+#X floatatom 115 207 5 0 2000 0 - - -;
+#X floatatom 155 157 5 0 2000 0 - - -;
+#X obj 155 182 abs;
+#X floatatom 155 207 5 0 2000 0 - - -;
+#X floatatom 196 157 5 0 2000 0 - - -;
+#X obj 196 182 abs;
+#X floatatom 196 207 5 0 2000 0 - - -;
+#X obj 244 131 unpack f f f;
+#X floatatom 244 158 5 0 2000 0 - - -;
+#X obj 244 183 abs;
+#X floatatom 244 208 5 0 2000 0 - - -;
+#X floatatom 284 158 5 0 2000 0 - - -;
+#X obj 284 183 abs;
+#X floatatom 284 208 5 0 2000 0 - - -;
+#X floatatom 325 158 5 0 2000 0 - - -;
+#X obj 325 183 abs;
+#X floatatom 325 208 5 0 2000 0 - - -;
+#X obj 377 132 unpack f f f;
+#X floatatom 377 159 5 0 2000 0 - - -;
+#X obj 377 184 abs;
+#X floatatom 377 209 5 0 2000 0 - - -;
+#X floatatom 417 159 5 0 2000 0 - - -;
+#X obj 417 184 abs;
+#X floatatom 417 209 5 0 2000 0 - - -;
+#X floatatom 458 159 5 0 2000 0 - - -;
+#X obj 458 184 abs;
+#X floatatom 458 209 5 0 2000 0 - - -;
+#X obj 511 134 unpack f f f;
+#X floatatom 511 161 5 0 2000 0 - - -;
+#X obj 511 186 abs;
+#X floatatom 511 211 5 0 2000 0 - - -;
+#X floatatom 551 161 5 0 2000 0 - - -;
+#X obj 551 186 abs;
+#X floatatom 551 211 5 0 2000 0 - - -;
+#X floatatom 592 161 5 0 2000 0 - - -;
+#X obj 592 186 abs;
+#X floatatom 592 211 5 0 2000 0 - - -;
+#X obj 644 135 unpack f f f;
+#X floatatom 644 162 5 0 2000 0 - - -;
+#X obj 644 187 abs;
+#X floatatom 644 212 5 0 2000 0 - - -;
+#X floatatom 684 162 5 0 2000 0 - - -;
+#X obj 684 187 abs;
+#X floatatom 684 212 5 0 2000 0 - - -;
+#X floatatom 725 162 5 0 2000 0 - - -;
+#X obj 725 187 abs;
+#X floatatom 725 212 5 0 2000 0 - - -;
+#X text 825 86 Recieve the OSC data from Processing. Recieving the
+Center of Mass of up to 6 users and sends it packed as an X \, Y \,
+Z coordinate Unpacks the X \, Y \, Z for each user \, and finds the
+'closest' and 'farthest' user in all X \, Y \, and Z dimensions.;
+#X text 942 629 The pd switch and pd data refresher are commented inside
+the patch \, they basically keep a constantly changing value for player
+one \, alternating +/- 0.5 in order to keep the targeted maximum value
+always fresh for all 6 users.;
+#X text 316 522 comment;
+#X text -38 17 Unpacking the 3 digit X \, Y and Z coordinates that
+we are recieving from processing \, using an absolute value to always
+get a positive output \, this ensures protection against negative inputs
+\, since we are looking for maximum value.;
+#X connect 0 0 1 0;
+#X connect 1 0 51 2;
+#X connect 3 0 0 0;
+#X connect 3 0 4 0;
+#X connect 4 0 6 0;
+#X connect 5 0 2 0;
+#X connect 6 0 52 2;
+#X connect 7 0 8 0;
+#X connect 7 0 9 0;
+#X connect 7 0 38 0;
+#X connect 7 0 47 0;
+#X connect 8 0 5 0;
+#X connect 9 0 10 0;
+#X connect 10 0 11 0;
+#X connect 11 0 3 0;
+#X connect 12 0 3 2;
+#X connect 13 0 44 2;
+#X connect 14 0 35 2;
+#X connect 15 0 3 3;
+#X connect 16 0 44 3;
+#X connect 17 0 35 3;
+#X connect 18 0 3 4;
+#X connect 19 0 44 4;
+#X connect 20 0 35 4;
+#X connect 21 0 3 5;
+#X connect 22 0 44 5;
+#X connect 23 0 35 5;
+#X connect 24 0 3 1;
+#X connect 25 0 44 1;
+#X connect 26 0 35 1;
+#X connect 27 0 28 0;
+#X connect 27 1 61 0;
+#X connect 27 2 64 0;
+#X connect 28 0 59 0;
+#X connect 29 0 32 0;
+#X connect 30 0 50 0;
+#X connect 31 0 41 0;
+#X connect 32 0 10 1;
+#X connect 33 0 34 0;
+#X connect 34 0 51 0;
+#X connect 35 0 33 0;
+#X connect 35 0 36 0;
+#X connect 36 0 37 0;
+#X connect 37 0 52 0;
+#X connect 38 0 39 0;
+#X connect 39 0 40 0;
+#X connect 40 0 35 0;
+#X connect 41 0 39 1;
+#X connect 42 0 43 0;
+#X connect 43 0 51 1;
+#X connect 44 0 42 0;
+#X connect 44 0 45 0;
+#X connect 45 0 46 0;
+#X connect 46 0 52 1;
+#X connect 47 0 48 0;
+#X connect 48 0 49 0;
+#X connect 49 0 44 0;
+#X connect 50 0 48 1;
+#X connect 51 0 53 0;
+#X connect 52 0 54 0;
+#X connect 55 0 56 0;
+#X connect 55 1 27 0;
+#X connect 55 1 67 0;
+#X connect 55 2 77 0;
+#X connect 55 3 87 0;
+#X connect 55 4 97 0;
+#X connect 55 5 107 0;
+#X connect 58 0 7 0;
+#X connect 59 0 60 0;
+#X connect 60 0 31 0;
+#X connect 61 0 62 0;
+#X connect 62 0 63 0;
+#X connect 63 0 30 0;
+#X connect 64 0 65 0;
+#X connect 65 0 66 0;
+#X connect 66 0 29 0;
+#X connect 67 0 68 0;
+#X connect 67 1 71 0;
+#X connect 67 2 74 0;
+#X connect 68 0 69 0;
+#X connect 69 0 70 0;
+#X connect 70 0 26 0;
+#X connect 71 0 72 0;
+#X connect 72 0 73 0;
+#X connect 73 0 25 0;
+#X connect 74 0 75 0;
+#X connect 75 0 76 0;
+#X connect 76 0 24 0;
+#X connect 77 0 78 0;
+#X connect 77 1 81 0;
+#X connect 77 2 84 0;
+#X connect 78 0 79 0;
+#X connect 79 0 80 0;
+#X connect 80 0 14 0;
+#X connect 81 0 82 0;
+#X connect 82 0 83 0;
+#X connect 83 0 13 0;
+#X connect 84 0 85 0;
+#X connect 85 0 86 0;
+#X connect 86 0 12 0;
+#X connect 87 0 88 0;
+#X connect 87 1 91 0;
+#X connect 87 2 94 0;
+#X connect 88 0 89 0;
+#X connect 89 0 90 0;
+#X connect 90 0 17 0;
+#X connect 91 0 92 0;
+#X connect 92 0 93 0;
+#X connect 93 0 16 0;
+#X connect 94 0 95 0;
+#X connect 95 0 96 0;
+#X connect 96 0 15 0;
+#X connect 97 0 98 0;
+#X connect 97 1 101 0;
+#X connect 97 2 104 0;
+#X connect 98 0 99 0;
+#X connect 99 0 100 0;
+#X connect 100 0 20 0;
+#X connect 101 0 102 0;
+#X connect 102 0 103 0;
+#X connect 103 0 19 0;
+#X connect 104 0 105 0;
+#X connect 105 0 106 0;
+#X connect 106 0 18 0;
+#X connect 107 0 108 0;
+#X connect 107 1 111 0;
+#X connect 107 2 114 0;
+#X connect 108 0 109 0;
+#X connect 109 0 110 0;
+#X connect 110 0 23 0;
+#X connect 111 0 112 0;
+#X connect 112 0 113 0;
+#X connect 113 0 22 0;
+#X connect 114 0 115 0;
+#X connect 115 0 116 0;
+#X connect 116 0 21 0;
+#X restore -459 181 pd Receive_OSC;
+#X floatatom -459 241 5 0 0 3 X-MAX - -;
+#X obj -459 213 unpack f f f;
+#X floatatom -419 241 5 0 0 3 Y-MAX - -;
+#X floatatom -378 241 5 0 0 3 Z-MAX - -;
+#X floatatom -337 241 5 0 0 3 X-MIN - -;
+#X obj -337 208 unpack f f f;
+#X floatatom -297 241 5 0 0 3 Y-MIN - -;
+#X floatatom -256 241 5 0 0 3 Z-MIN - -;
+#X obj -492 90 gemwin_control;
+#X obj -597 29 import Gem;
+#X obj 147 138 gemhead;
+#X obj -92 479 pix_video;
+#X obj -349 34 vradio 15 1 0 3 empty empty empty 0 -8 0 10 -262144
+-1 -1 0;
+#X text -508 29 deactivate fullscreen;
+#X text -509 46 fullscreen on screen 1;
+#X text -509 62 fullscreen on screen 2;
+#X obj -18 779 keyname;
+#X obj -223 24 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+1;
+#N canvas 928 341 749 437 dimension 0;
+#X obj -39 359 outlet;
+#X obj -101 28 inlet;
+#X obj -102 217 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X obj -81 202 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X obj -59 202 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X msg -81 134 1;
+#X msg -49 122 2;
+#X msg -16 122 3;
+#X obj -80 85 select 49 50 51;
+#X obj -102 168 select 1 2 3;
+#X msg 126 256 dimen 1920 1080;
+#X msg -99 257 dimen 480 270;
+#X msg 10 257 dimen 1280 720;
+#X text 40 142 This patch allows you to alternate between image capture
+dimensions by typing 1 \, 2 \, or 3 on the keyboard. The camera has
+to support the quality of video you are shooting.;
+#X connect 1 0 8 0;
+#X connect 2 0 11 0;
+#X connect 3 0 12 0;
+#X connect 4 0 10 0;
+#X connect 5 0 9 0;
+#X connect 6 0 9 0;
+#X connect 7 0 9 0;
+#X connect 8 0 5 0;
+#X connect 8 1 6 0;
+#X connect 8 2 7 0;
+#X connect 9 0 2 0;
+#X connect 9 1 3 0;
+#X connect 9 2 4 0;
+#X connect 10 0 0 0;
+#X connect 11 0 0 0;
+#X connect 12 0 0 0;
+#X restore 20 323 pd dimension;
+#X obj -60 95 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+-1;
+#X obj 108 244 key;
+#X msg -3 137 device 0;
+#X obj 35 643 pix_texture;
+#X msg 72 137 device 1;
+#X obj -93 62 select 0 1;
+#X obj -3 32 vradio 15 1 0 2 empty empty empty 0 -8 0 10 -262144 -1
+-1 0;
+#X obj -3 87 select 0 1;
+#X text 20 30 iSight Webcam;
+#X text 19 47 USB Webcam;
+#N canvas 1079 241 450 300 EXTRAS 0;
+#X msg 37 36 channel 2;
+#X text 118 31 depending on your capture-device you can switch between
+(e.g) Tuner \, COMPOSITE & S-VHS;
+#X msg 38 87 freq 1234;
+#X text 116 89 set the frequency for the TV-Tuner;
+#X msg -88 478 colorspace RGBA;
+#X text 30 478 could be RGBA \, YUV or Grey;
+#X obj -300 664 pdp_conv;
+#X floatatom -249 637 5 0 0 0 - - -;
+#X msg -252 506 hor \$1;
+#X msg -253 448 ver \$1;
+#X obj -180 442 tgl 15 0 empty empty empty 20 8 0 8 -262144 -1 -1 0
+1;
+#X obj -253 423 tgl 15 0 empty empty empty 20 8 0 8 -262144 -1 -1 0
+1;
+#X msg -250 575 vmask 0.25 0.5 0.25;
+#X msg -250 602 hmask 0.25 0.5 0.25;
+#X msg -251 550 vmask 0.25 -0.5 0.25;
+#X obj -300 747 pdp_gain;
+#X floatatom -249 720 5 0 0 0 - - -;
+#X msg -249 697 1;
+#X msg -211 696 9;
+#X obj -262 822 pdp_glx;
+#X text -296 842 X11 openGL output;
+#X text -295 857 (linux \, mesa \, osx);
+#X obj -505 542 pix_2pdp;
+#X obj -505 485 t a b;
+#X text -442 547 pdp outlet;
+#X text -582 547 Gem outlet;
+#X obj -475 513 spigot;
+#X obj -424 514 tgl 15 0 empty empty empty 0 -6 0 8 -262144 -1 -1 0
+1;
+#X msg -162 484 create;
+#X msg -99 489 destroy;
+#X text -693 508 turn on/off pdp processing;
+#X text -177 638 comment;
+#X msg 11 509 dim 1440 900;
+#X connect 6 0 15 0;
+#X connect 6 0 19 0;
+#X connect 7 0 6 1;
+#X connect 8 0 6 0;
+#X connect 9 0 6 0;
+#X connect 10 0 8 0;
+#X connect 11 0 9 0;
+#X connect 12 0 6 0;
+#X connect 13 0 6 0;
+#X connect 14 0 6 0;
+#X connect 15 0 19 0;
+#X connect 16 0 15 1;
+#X connect 17 0 16 0;
+#X connect 18 0 16 0;
+#X connect 22 1 6 0;
+#X connect 23 0 22 0;
+#X connect 23 1 26 0;
+#X connect 26 0 22 0;
+#X connect 27 0 26 1;
+#X connect 28 0 19 0;
+#X connect 29 0 19 0;
+#X connect 32 0 19 0;
+#X restore -598 59 pd EXTRAS;
+#X obj 35 601 pix_lumaoffset;
+#X floatatom -132 669 5 0 200 2 offset - -;
+#X floatatom -90 669 5 0 30 2 gap - -;
+#X obj 84 452 tgl 15 0 empty empty empty 0 -6 0 8 -262144 -1 -1 0 1
+;
+#X msg 84 475 smooth \$1;
+#X msg 13 474 fill \$1;
+#X obj 13 450 tgl 15 0 empty empty empty 0 -6 0 8 -262144 -1 -1 0 1
+;
+#X obj -470 400 vsl 15 128 0 100 0 0 empty empty empty 0 -9 0 10 -262144
+-1 -1 0 1;
+#X floatatom -470 367 5 0 0 2 - - -;
+#X obj -470 337 int;
+#X obj -511 401 vsl 15 128 0 100 0 0 empty empty empty 0 -9 0 10 -262144
+-1 -1 0 1;
+#X floatatom -511 368 5 0 0 2 - - -;
+#X obj -511 338 int;
+#X obj -552 402 vsl 15 128 0 100 0 0 empty empty empty 0 -9 0 10 -262144
+-1 -1 0 1;
+#X floatatom -552 369 5 0 0 2 - - -;
+#X obj -552 339 int;
+#X obj -552 311 / 10;
+#X obj -511 310 / 10;
+#X obj -463 647 vsl 15 128 0 20 0 0 empty empty empty 0 -9 0 10 -262144
+-1 -1 0 1;
+#X floatatom -463 614 5 0 0 2 - - -;
+#X obj -463 584 int;
+#X obj -504 648 vsl 15 128 0 20 0 0 empty empty empty 0 -9 0 10 -262144
+-1 -1 0 1;
+#X floatatom -504 615 5 0 0 2 - - -;
+#X obj -504 585 int;
+#X obj -545 649 vsl 15 128 0 20 0 0 empty empty empty 0 -9 0 10 -262144
+-1 -1 0 1;
+#X floatatom -545 616 5 0 0 2 - - -;
+#X obj -545 586 int;
+#X obj -545 558 / 5;
+#X obj -503 557 / 5;
+#X floatatom -141 560 5 0 20 2 - - -;
+#X obj -470 309 / 30;
+#X obj -466 554 / 5;
+#N canvas 433 275 276 436 rect_size 0;
+#X symbolatom -285 46 10 0 0 0 - - -;
+#X obj -285 70 select Up Down;
+#X obj -225 206 float;
+#X floatatom -265 246 5 0 35 0 - - -;
+#X obj -262 206 +;
+#X obj -239 104 bang;
+#X obj -290 101 bang;
+#X obj -191 311 * 0.09;
+#X msg -285 146 0.25;
+#X msg -243 145 -0.25;
+#X msg -225 176 25;
+#X obj -292 6 inlet;
+#X obj -258 370 outlet;
+#X obj -174 373 outlet;
+#X floatatom -252 342 5 0 0 0 - - -;
+#X floatatom -160 345 5 0 0 0 - - -;
+#X obj -271 311 * -0.16;
+#X connect 0 0 1 0;
+#X connect 1 0 6 0;
+#X connect 1 1 5 0;
+#X connect 2 0 4 1;
+#X connect 3 0 7 0;
+#X connect 3 0 16 0;
+#X connect 4 0 2 0;
+#X connect 4 0 3 0;
+#X connect 5 0 9 0;
+#X connect 6 0 8 0;
+#X connect 7 0 13 0;
+#X connect 7 0 15 0;
+#X connect 8 0 4 0;
+#X connect 9 0 4 0;
+#X connect 10 0 2 0;
+#X connect 11 0 0 0;
+#X connect 16 0 12 0;
+#X connect 16 0 14 0;
+#X restore 1 850 pd rect_size;
+#X obj -132 605 * 2.5;
+#X obj -132 637 int;
+#X obj -90 637 int;
+#X obj -90 605 * 0.8;
+#X obj 33 735 rectangle 7.2 4.05;
+#X floatatom -414 881 5 0 0 2 - - -;
+#X obj -504 798 - 20;
+#X obj -504 841 abs;
+#X obj -157 808 hsl 128 15 0 20 0 0 empty empty empty -2 -8 0 10 -262144
+-1 -1 0 1;
+#X floatatom 79 298 5 0 0 0 - - -;
+#X obj 132 371 select 102 115;
+#X text 122 61 allows you to choose between the onboard webcam or a
+USB webcam;
+#X text 243 374 Key to this select allows toggle of fill and smooth
+by typing 'f' and 's' on the keyboard.;
+#X text 143 286 Key to pd dimension allows the webcam to appear in
+3 different resolutions. '1' = 480 x 270 '2' = 1280 x 720 '3' = 1920
+x 1080;
+#X text 232 554 pix_video is what is capturing the webcam. This inlet
+you set all the settings for the camera \, such as what device you
+are using \, the dimensions \, NTSC or PAL \, and many more settings
+\, right click and go to help for a better list.;
+#X text 187 482 Unchecking fill shows the draw lines in the sketch
+\, filling the draw lines creates the 'log cabin style' displacement.
+Smooth does exactly what it sounds like it would do \, smooth the lines.
+;
+#X text 213 638 pix_lumaoffset is what is distorting the video \, the
+offset and gap control the quality and level of the... let's call it
+the blur;
+#X text 200 704 pix_texture is what outputs the actual frames \, and
+it outputs it to a rectangle with variable zoom \, allowing the user
+to use the up and down arrow on the keyboard to alternate the zoom
+during playback.;
+#X text 310 797 pd rect_size allows the video frame to have a variable
+zoom \, the 7.2 and 4.05 are the starting numbers to get a nice instant
+fullscreen on my computer \, and pd rect_size allows a variable zoom
+keeping the 16:9 aspect ratio;
+#X text -176 873 Takes the max dist of all the players and turns that
+into a realtime variable distortion based on player distance from the
+camera. The numbers I used looked good for what I was doing.;
+#X text -372 138 open pd Recieve_OSC for description;
+#X text -436 399 Unpacks the max distance of the furthest player from
+the camera \, the first bar converts distance to a 0-100 scale \, and
+the second bar lowers it from 0-20.;
+#X text -440 729 I subtract 20 and take the absolute value of it to
+get the inverse number \, this was to get proper output for distortion.
+Otherwise it was inverted \, the screen would blur when you were far
+\, I needed it to blur when you are close.;
+#X connect 0 0 2 0;
+#X connect 0 1 6 0;
+#X connect 1 0 47 0;
+#X connect 2 0 1 0;
+#X connect 2 1 3 0;
+#X connect 2 2 4 0;
+#X connect 4 0 61 0;
+#X connect 6 0 5 0;
+#X connect 6 1 7 0;
+#X connect 6 2 8 0;
+#X connect 11 0 12 0;
+#X connect 12 0 31 0;
+#X connect 13 0 9 1;
+#X connect 17 1 63 0;
+#X connect 18 0 0 0;
+#X connect 18 0 25 0;
+#X connect 18 0 34 0;
+#X connect 18 0 37 0;
+#X connect 19 0 12 0;
+#X connect 20 0 13 0;
+#X connect 20 0 27 0;
+#X connect 21 0 19 0;
+#X connect 21 0 73 0;
+#X connect 21 0 74 0;
+#X connect 22 0 12 0;
+#X connect 23 0 68 0;
+#X connect 24 0 12 0;
+#X connect 25 1 20 0;
+#X connect 26 0 27 0;
+#X connect 27 0 22 0;
+#X connect 27 1 24 0;
+#X connect 31 0 23 0;
+#X connect 32 0 31 1;
+#X connect 33 0 31 2;
+#X connect 34 0 35 0;
+#X connect 35 0 31 0;
+#X connect 36 0 31 0;
+#X connect 37 0 36 0;
+#X connect 38 0 62 0;
+#X connect 39 0 38 0;
+#X connect 40 0 39 0;
+#X connect 41 0 59 0;
+#X connect 42 0 41 0;
+#X connect 43 0 42 0;
+#X connect 44 0 58 0;
+#X connect 45 0 44 0;
+#X connect 46 0 45 0;
+#X connect 47 0 46 0;
+#X connect 48 0 43 0;
+#X connect 50 0 49 0;
+#X connect 51 0 50 0;
+#X connect 52 0 70 0;
+#X connect 53 0 52 0;
+#X connect 54 0 53 0;
+#X connect 56 0 55 0;
+#X connect 57 0 56 0;
+#X connect 58 0 57 0;
+#X connect 59 0 54 0;
+#X connect 60 0 64 0;
+#X connect 60 0 67 0;
+#X connect 61 0 40 0;
+#X connect 62 0 51 0;
+#X connect 63 0 68 1;
+#X connect 63 1 68 2;
+#X connect 64 0 65 0;
+#X connect 65 0 32 0;
+#X connect 66 0 33 0;
+#X connect 67 0 66 0;
+#X connect 69 0 72 0;
+#X connect 70 0 71 0;
+#X connect 71 0 69 0;
+#X connect 72 0 60 0;
+#X connect 74 0 37 0;
+#X connect 74 1 34 0;
