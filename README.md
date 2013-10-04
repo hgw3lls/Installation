@@ -1,6 +1,5 @@
 ****************************************************************************
-Realtimeliveuserbasedvideoblur [yep, that's all one word]
-
+Real Time User Based Video Blur
 
 http://www.jasonraimondi.com/
 
